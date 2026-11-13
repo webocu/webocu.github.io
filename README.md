@@ -35,8 +35,11 @@ each app with `ares-install` instead.
 - [`apps.json`](apps.json) is the single source of truth. `make build` turns it into `repo.json` and
   `index.html`, which are byte-for-byte the same document. The Homebrew Channel fetches the address it is
   given as is, and it has no pagination: the whole catalog is one document.
-- `apps/<id>/` holds the icon (80×80) and `description.html`, an HTML **fragment** (the Homebrew Channel
-  pastes it into its panel, so no `<html>` or `<body>`).
+- `apps/<id>/` holds the icon (80×80), `description.html` and `preview.gif`. The description is an HTML
+  **fragment** (the Homebrew Channel pastes it into its panel, so no `<html>` or `<body>`, and it removes
+  `<style>`). Addresses in it are written in full: the panel opens a link in the TV browser and loads a picture
+  relative to its own page, not to this one. `preview.gif` is a copy of the app's UI preview, shrunk to about
+  800 px and a few MB, because the TV downloads it together with the description.
 - Because `/` is the catalog, there is no web page here; this README is the human-facing page.
 
 ## Publishing a new version
@@ -53,7 +56,8 @@ Needs Node 20 or newer, nothing else.
 Before the release exists (the first time), hash the local file instead:
 `make sync APP=<id> FILE=path/to/<id>_<version>_all.ipk`, and upload exactly that file.
 
-To add an app: add an entry to `apps.json`, then `apps/<id>/icon.png` and `apps/<id>/description.html`.
+To add an app: add an entry to `apps.json`, then `apps/<id>/icon.png` and `apps/<id>/description.html` (and,
+if you want a picture in it, `apps/<id>/preview.gif`, linked from the description with its full address).
 
 | Target | What it does |
 | --- | --- |

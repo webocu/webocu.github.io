@@ -22,6 +22,9 @@ export const ipkUrlOf = (app) =>
 export const iconUrlOf = (cfg, app) => `${siteOf(cfg)}/apps/${app.id}/icon.png`;
 export const descriptionUrlOf = (cfg, app) => `${siteOf(cfg)}/apps/${app.id}/description.html`;
 
+// The src of every <img> in a description fragment.
+export const imagesOf = (html) => [...html.matchAll(/<img\b[^>]*?\bsrc\s*=\s*["']([^"']+)["']/gi)].map((m) => m[1]);
+
 export function validate(cfg) {
   const errors = [];
   const err = (msg) => errors.push(msg);
@@ -62,9 +65,21 @@ export function validate(cfg) {
     const desc = join(ROOT, 'apps', app.id ?? '', 'description.html');
     if (!existsSync(desc)) {
       err(`${at} missing apps/${app.id}/description.html`);
-    } else if (/<\s*(html|head|body)\b/i.test(readFileSync(desc, 'utf8'))) {
-      // Homebrew Channel pastes the file into its panel: it must be a fragment.
-      err(`${at} description.html must be an HTML fragment, not a full page`);
+    } else {
+      const html = readFileSync(desc, 'utf8');
+      if (/<\s*(html|head|body)\b/i.test(html)) {
+        // Homebrew Channel pastes the file into its panel: it must be a fragment.
+        err(`${at} description.html must be an HTML fragment, not a full page`);
+      }
+      // The panel resolves a relative address against its own page, so a picture has to be
+      // written with the full address; one on this site has to exist in this repository.
+      for (const src of imagesOf(html)) {
+        if (!/^https:\/\//.test(src)) {
+          err(`${at} description.html: image "${src}" must be an absolute https address`);
+        } else if (src.startsWith(`${siteOf(cfg)}/`) && !existsSync(join(ROOT, src.slice(siteOf(cfg).length + 1)))) {
+          err(`${at} description.html: ${src} is not in this repository`);
+        }
+      }
     }
   }
   return errors;

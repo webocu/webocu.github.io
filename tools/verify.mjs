@@ -3,13 +3,13 @@
 //
 //   node tools/verify.mjs          every ipkUrl still serves the file apps.json describes
 //   node tools/verify.mjs --live   additionally: the published site matches repo.json, and
-//                                  every iconUri / fullDescriptionUrl answers
+//                                  every iconUri / fullDescriptionUrl / picture of a description answers
 //
 // A replaced or deleted release asset makes the hash check fail on the TV, so
 // this is what CI runs on a schedule.
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { ROOT, download, ipkUrlOf, packageOf, readConfig, sha256, siteOf } from './lib.mjs';
+import { ROOT, download, imagesOf, ipkUrlOf, packageOf, readConfig, sha256, siteOf } from './lib.mjs';
 
 const live = process.argv.includes('--live');
 const cfg = readConfig();
@@ -42,7 +42,8 @@ if (live) {
   }
   for (const app of cfg.apps) {
     const pkg = packageOf(cfg, app);
-    for (const url of [pkg.iconUri, pkg.fullDescriptionUrl]) {
+    const pictures = imagesOf(readFileSync(join(ROOT, 'apps', app.id, 'description.html'), 'utf8'));
+    for (const url of [pkg.iconUri, pkg.fullDescriptionUrl, ...pictures]) {
       try {
         await download(url);
         report(true, url);
