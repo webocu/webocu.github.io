@@ -1,0 +1,54 @@
+{
+  "paging": {
+    "page": 1,
+    "count": 2,
+    "maxPage": 1,
+    "itemsTotal": 2
+  },
+  "packages": [
+    {
+      "id": "webocu.dock",
+      "title": "WebOCU Dock",
+      "iconUri": "https://webocu.github.io/apps/webocu.dock/icon.png",
+      "manifest": {
+        "id": "webocu.dock",
+        "version": "0.3.2",
+        "type": "web",
+        "title": "WebOCU Dock",
+        "appDescription": "WebOS Custom UI app launcher: a dock at the edge of the picture, driven by the remote",
+        "iconUri": "https://webocu.github.io/apps/webocu.dock/icon.png",
+        "sourceUrl": "https://github.com/webocu/webocu-dock",
+        "rootRequired": "optional",
+        "ipkUrl": "https://github.com/webocu/webocu-dock/releases/download/v0.3.2/webocu.dock_0.3.2_all.ipk",
+        "ipkHash": {
+          "sha256": "e43bd32d4bb8e96bb41fffd98f3e129be9fee609977d412ecf70a0069f80653f"
+        },
+        "ipkSize": 3186382
+      },
+      "shortDescription": "Overlay app launcher for webOS TV",
+      "fullDescriptionUrl": "https://webocu.github.io/apps/webocu.dock/description.html"
+    },
+    {
+      "id": "webocu.settings",
+      "title": "WebOCU Settings",
+      "iconUri": "https://webocu.github.io/apps/webocu.settings/icon.png",
+      "manifest": {
+        "id": "webocu.settings",
+        "version": "0.3.3",
+        "type": "web",
+        "title": "WebOCU Settings",
+        "appDescription": "WebOS Custom UI Settings: screen, sound, power and system options in a panel over the picture",
+        "iconUri": "https://webocu.github.io/apps/webocu.settings/icon.png",
+        "sourceUrl": "https://github.com/webocu/webocu-settings",
+        "rootRequired": "optional",
+        "ipkUrl": "https://github.com/webocu/webocu-settings/releases/download/v0.3.3/webocu.settings_0.3.3_all.ipk",
+        "ipkHash": {
+          "sha256": "e0c30dccde54c45c8c30e6d4a4347a73554b9090180e0db8487c3e39a1b3ae57"
+        },
+        "ipkSize": 1551230
+      },
+      "shortDescription": "Overlay settings panel for webOS TV",
+      "fullDescriptionUrl": "https://webocu.github.io/apps/webocu.settings/description.html"
+    }
+  ]
+}

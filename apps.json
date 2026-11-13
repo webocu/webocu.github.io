@@ -1,0 +1,33 @@
+{
+  "site": "https://webocu.github.io",
+  "apps": [
+    {
+      "id": "webocu.dock",
+      "title": "WebOCU Dock",
+      "shortDescription": "Overlay app launcher for webOS TV",
+      "appDescription": "WebOS Custom UI app launcher: a dock at the edge of the picture, driven by the remote",
+      "github": "webocu/webocu-dock",
+      "version": "0.3.2",
+      "type": "web",
+      "rootRequired": "optional",
+      "ipkHash": {
+        "sha256": "e43bd32d4bb8e96bb41fffd98f3e129be9fee609977d412ecf70a0069f80653f"
+      },
+      "ipkSize": 3186382
+    },
+    {
+      "id": "webocu.settings",
+      "title": "WebOCU Settings",
+      "shortDescription": "Overlay settings panel for webOS TV",
+      "appDescription": "WebOS Custom UI Settings: screen, sound, power and system options in a panel over the picture",
+      "github": "webocu/webocu-settings",
+      "version": "0.3.3",
+      "type": "web",
+      "rootRequired": "optional",
+      "ipkHash": {
+        "sha256": "e0c30dccde54c45c8c30e6d4a4347a73554b9090180e0db8487c3e39a1b3ae57"
+      },
+      "ipkSize": 1551230
+    }
+  ]
+}

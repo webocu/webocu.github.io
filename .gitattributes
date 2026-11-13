@@ -1,0 +1,6 @@
+# Normalise line endings: the generated JSON must be byte-identical on every platform.
+* text=auto eol=lf
+
+# Binary files: no diffs, no conversions.
+*.png binary
+*.ipk binary

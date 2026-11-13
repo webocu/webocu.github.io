@@ -1,0 +1,7 @@
+# Packages live in the GitHub Releases of the apps, never in this repository.
+*.ipk
+*.zip
+
+node_modules/
+.DS_Store
+Thumbs.db
